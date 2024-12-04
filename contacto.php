@@ -1,14 +1,13 @@
 <?php
-include 'config.php'; // Archivo de configuración de la base de datos
+include 'config.php';
 
-// Procesar el formulario de contacto
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $correo = $_POST['correo'];
     $nombre = $_POST['nombre'];
     $asunto = $_POST['asunto'];
     $comentario = $_POST['comentario'];
 
-    // Insertar los datos en la tabla contacto
     $query = "INSERT INTO contacto (correo, nombre, asunto, comentario) VALUES (?, ?, ?, ?)";
     $stmt = $pdo->prepare($query);
     $stmt->execute([$correo, $nombre, $asunto, $comentario]);
@@ -27,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
 
-    <!-- Menú de navegación -->
+  
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Librería El Saber</a>
@@ -50,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </nav>
 
-    <!-- Contenido principal -->
+
     <div class="container mt-5">
         <h2 class="mb-4">Formulario de Contacto</h2>
         <form method="POST" action="">
