@@ -1,11 +1,10 @@
 <?php
-// Incluir el archivo de configuración para la conexión a la base de datos
 include 'config.php';
 
-// Definir el filtro de manera segura
+
 $filter = isset($_GET['filter']) ? $_GET['filter'] : '';
 
-// Consultas para obtener todas las tablas
+
 $queries = [
     'autores' => "SELECT * FROM autores",
     'biografias' => "SELECT * FROM biografias",
@@ -15,19 +14,18 @@ $queries = [
     'publicadores' => "SELECT * FROM publicadores"
 ];
 
-// Ejecutar las consultas y almacenar los resultados
 $results = [];
 foreach ($queries as $key => $query) {
     $stmt = $pdo->prepare($query);
     if ($filter) {
-        $filter_value = "%" . $filter . "%";  // Agregar el símbolo '%' para la búsqueda
-        $stmt->bindParam(':filter', $filter_value, PDO::PARAM_STR); // Vincular el parámetro
+        $filter_value = "%" . $filter . "%";  
+        $stmt->bindParam(':filter', $filter_value, PDO::PARAM_STR); 
     }
     $stmt->execute();
     $results[$key] = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-// Contar los resultados para cada tabla
+
 $counts = array_map('count', $results);
 ?>
 
@@ -42,7 +40,7 @@ $counts = array_map('count', $results);
 </head>
 <body>
 
-    <!-- Menú de navegación -->
+
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Librería El Saber</a>
@@ -65,11 +63,11 @@ $counts = array_map('count', $results);
         </div>
     </nav>
 
-    <!-- Contenido principal -->
+  
     <div class="container mt-5">
         <h2 class="mb-4 text-center">Catálogo Completo</h2>
 
-        <!-- Formulario para filtrar datos -->
+       
         <section class="mt-4">
             <h3>Filtrar Datos</h3>
             <form method="GET" action="">
@@ -78,12 +76,12 @@ $counts = array_map('count', $results);
             </form>
         </section>
 
-        <!-- Mostrar la cantidad de registros encontrados -->
+     
         <section class="mt-4">
             <p><strong>Se encontraron <?= $counts['autores'] ?? 0 ?> autores, <?= $counts['biografias'] ?? 0 ?> biografías, <?= $counts['derechos'] ?? 0 ?> derechos, <?= $counts['tiendas'] ?? 0 ?> tiendas y <?= $counts['titulos'] ?? 0 ?> títulos.</strong></p>
         </section>
 
-        <!-- Mostrar autores -->
+
         <section>
             <h3>Autores</h3>
             <table class="table table-striped">
@@ -108,7 +106,7 @@ $counts = array_map('count', $results);
             </table>
         </section>
 
-        <!-- Mostrar biografías -->
+
         <section>
             <h3>Biografías</h3>
             <table class="table table-striped">
@@ -129,7 +127,7 @@ $counts = array_map('count', $results);
             </table>
         </section>
 
-        <!-- Mostrar derechos -->
+
         <section>
             <h3>Derechos</h3>
             <table class="table table-striped">
@@ -154,7 +152,7 @@ $counts = array_map('count', $results);
             </table>
         </section>
 
-        <!-- Mostrar tiendas -->
+
         <section>
             <h3>Tiendas</h3>
             <table class="table table-striped">
@@ -179,7 +177,7 @@ $counts = array_map('count', $results);
             </table>
         </section>
 
-        <!-- Mostrar títulos -->
+
         <section>
             <h3>Títulos</h3>
             <table class="table table-striped">
@@ -204,7 +202,7 @@ $counts = array_map('count', $results);
             </table>
         </section>
 
-        <!-- Mostrar publicadores -->
+
         <section>
             <h3>Publicadores</h3>
             <table class="table table-striped">
@@ -231,17 +229,17 @@ $counts = array_map('count', $results);
 
     </div>
 
-    <!-- Footer -->
+
     <footer class="mt-5">
         <p class="text-center">&copy; 2024 Librería El Saber. Todos los derechos reservados.</p>
     </footer>
 
     <?php
-    // Cerrar la conexión a la base de datos
-    $pdo = null; // Cerrar la conexión PDO
+
+    $pdo = null;
     ?>
 
-    <!-- Bootstrap JS -->
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
