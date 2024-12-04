@@ -1,11 +1,11 @@
 <?php
-include 'config.php'; // Archivo de configuración de la base de datos
+include 'config.php'; 
 
-// Obtener los libros de la tabla titulos
-$query = "SELECT * FROM titulos";  // Cambiar "libros" por "titulos"
+
+$query = "SELECT * FROM titulos";  
 $stmt = $pdo->prepare($query);
 $stmt->execute();
-$titulos = $stmt->fetchAll(PDO::FETCH_ASSOC);  // Obtener los resultados
+$titulos = $stmt->fetchAll(PDO::FETCH_ASSOC);  
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +18,7 @@ $titulos = $stmt->fetchAll(PDO::FETCH_ASSOC);  // Obtener los resultados
 </head>
 <body>
 
-    <!-- Menú de navegación -->
+   
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Librería El Saber</a>
@@ -41,7 +41,7 @@ $titulos = $stmt->fetchAll(PDO::FETCH_ASSOC);  // Obtener los resultados
         </div>
     </nav>
 
-    <!-- Contenido principal -->
+    
     <div class="container mt-5">
         <h2 class="mb-4">Listado de Libros</h2>
         <table class="table table-striped">
