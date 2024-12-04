@@ -1,7 +1,7 @@
 <?php
-include 'config.php'; // Archivo de configuración de la base de datos
+include 'config.php';
 
-// Obtener los autores de la base de datos
+
 $query = "SELECT * FROM autores";
 $stmt = $pdo->prepare($query);
 $stmt->execute();
@@ -18,7 +18,7 @@ $autores = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </head>
 <body>
 
-    <!-- Menú de navegación -->
+
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Librería El Saber</a>
@@ -41,7 +41,7 @@ $autores = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
     </nav>
 
-    <!-- Contenido principal -->
+
     <div class="container mt-5">
         <h2 class="mb-4">Listado de Autores</h2>
         <table class="table table-striped">
